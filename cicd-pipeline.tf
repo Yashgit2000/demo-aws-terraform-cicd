@@ -93,6 +93,22 @@ resource "aws_codepipeline" "cicd_pipeline" {
     }
 
     stage {
+        name = "Approve"
+        action {
+            name     = "Approval"
+            category = "Approval"
+            owner    = "AWS"
+            provider = "Manual"
+            version  = "1"
+
+            configuration = {
+                 
+                ExternalEntityLink = "https://github.com/Yashgit2000/demo-aws-terraform-cicd" 
+            }
+       }
+    }
+
+    stage {
         name ="Deploy"
         action{
             name = "Deploy"
